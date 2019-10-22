@@ -8,7 +8,7 @@ SPLUNK_PASS  = "changeme1"
 # Splunk home directory
 SPLUNK_HOME  = "/opt/splunk"
 
-Vagrant.configure(2) do |config|
+Vagrant.configure("2") do |config|
 
     config.vm.box = "badarsebard/ubuntu-18.04-splunk"
     config.vm.define "splunk"

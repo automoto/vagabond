@@ -1,17 +1,14 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
-VAGRANTFILE_API_VERSION = "2"
-
-VM_MEMORY = 2048
-VM_CPUS = 2
-# this is the password you will set for your splunk admin user
+VM_MEMORY = 1024
+VM_CPUS = 1
+# this is the password you will set for your Splunk admin user
 SPLUNK_PASS  = "changeme1"
 # Splunk home directory
 SPLUNK_HOME  = "/opt/splunk"
 
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+Vagrant.configure("2") do |config|
 
     config.vm.define "indexer" do |indexer|
         config.vm.box = "badarsebard/ubuntu-18.04-splunk"
@@ -26,8 +23,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 ],
             }
         end
-
-        indexer.vm.synced_folder "../../src/pyden", "/opt/splunk/etc/apps/pyden", owner: "splunk", group: "splunk"
 
         indexer.vm.provider "vmware_desktop" do |v|
             v.memory = "#{VM_MEMORY}"
@@ -76,10 +71,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             }
         end
 
-        search.vm.synced_folder "../../src/pyden", "/opt/splunk/etc/apps/pyden", owner: "splunk", group: "splunk"
-        search.vm.synced_folder "../../src/pyden-manager", "/opt/splunk/etc/apps/pyden-manager", owner: "splunk", group: "splunk"
-        search.vm.synced_folder "../../src/pyden-examples", "/opt/splunk/etc/apps/pyden-examples", owner: "splunk", group: "splunk"
-
         search.vm.provider "vmware_desktop" do |v|
             v.memory = "#{VM_MEMORY}"
             v.cpus = "#{VM_CPUS}"
@@ -115,7 +106,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             u.env = {
                 :SPLUNK_HOME  => "#{SPLUNK_HOME}",
                 :SPLUNK_BIN   => "#{SPLUNK_HOME}/bin/splunk",
-                :SPLUNK_PASS   => "#{SPLUNK_PASS}"
+                :SPLUNK_PASS  => "#{SPLUNK_PASS}"
             }
         end
 

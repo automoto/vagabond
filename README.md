@@ -16,7 +16,7 @@ Usage of this project requires:
 ## Usage
 This project is intended to be used in one of two methods:
 - Direct clone and copy, or
-- Forking
+- GitHub Template
 
 ### Cloning
 Clone this repository like any other git repo and copy the portions of the project you need for your Splunk app project. For the project to work as intended, maintain the directory structure of:
@@ -32,10 +32,8 @@ vagrant/
   ...
 ```
 
-### Forking
-The preferred method of use for this project is to simply fork it into your own repository. You can then use that fork as the project for your Splunk app. As the Vagabond project is updated, you can choose when and how to incorporate those changes.
-
-Alternatively, you can fork this project as is into your own namespace and then fork from that repo to create your Splunk projects. This will give you a greater measure of control of the upstream repo, but adds an extra layer of complexity. It is not suggested unless you expect to make a lot of Splunk projects using this repo that will all need significant amounts of modifications.
+### GitHub Template
+The preferred method of use for this project is to use the GitHub template repository feature. The GitHub mirror of the Vagabond project is set as a template repository. Therefore, a user can do a limited version of forking. Unlike a truly forked repo, the new repository will not include the git history. The nature of this project precludes any value in setting an upstream therefore it is not recommended unless you're willing to de-conflict merges on every update.
 
 ## Syncing Apps
 The actual Splunk apps to be developed should be placed in the `src/` directory. These apps can then be added to the virtual machines through Vagrant synced folders. See the Vagrant documentation for specifics on how to configure synced folders.
